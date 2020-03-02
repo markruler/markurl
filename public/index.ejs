@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./favicon.ico" />
+  <link rel="apple-touch-icon" href="./logo192.png" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="URL Shortening" />
+  <title>Mark URL</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/markurl.css" />
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h3 class="display-3 d-flex justify-content-center">Mark URL</h3>
+    <div class="my-3 d-flex justify-content-center">
+      <a href="https://markruler.com">
+        <img src="./images/apple-icon-180x180.png" alt="markruler">
+      </a>
+    </div>
+    <form action="/url" method="post" class="form-signin">
+      <% if (message !== '') { %>
+      <div class="alert alert-warning" role="alert">
+        <%= message %>
+      </div>
+      <% } %>
+      <input type="email" name="email" class="form-control" placeholder="your email" required />
+      <input type="url" name="origin" class="form-control" value="http://" placeholder="http://www.example.com" required />
+      <!-- https://www.markruler.com/podo/film.do?releaseYear=all&productionCountry=%EB%8F%85%EC%9D%BC&genreId=3&saw=all&order=all -->
+      <input type="submit" value="CREATE" class="btn btn-secondary btn-block px-5" />
+      <div class="form-group d-flex justify-content-center">
+        <p class="mt-5 mb-3 text-muted">© MarkRuler 2019-2020</p>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

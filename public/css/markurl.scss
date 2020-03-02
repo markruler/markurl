@@ -1,0 +1,26 @@
+// scss 파일명 앞에 _(underscore) 넣으면 컴파일 안됨. 배포할 땐 _ 넣기
+$breakpoint-mobile: 575px;
+@media (max-width: $breakpoint-mobile) {
+  .display-3 {
+    font-size: 3rem;
+  }
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 350px;
+  padding: 15px;
+  margin: auto;
+
+  input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  input[type="url"] {
+    margin-bottom: 1rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
