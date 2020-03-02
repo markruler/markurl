@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const mail = require('../smtp');
 let Url = require('../models/Url.model');
 
+router.route('/').get((req, res) => {res.render('../public/index.ejs', { message : ''})})
+
 // http://expressjs.com/en/4x/api.html#req
 router.route('/:tiny').get((req, res) => {
   console.log('/url/:tiny get');
@@ -15,7 +17,7 @@ router.route('/:tiny').get((req, res) => {
   .then(data => res.redirect(data.origin))
   .catch(error => {
     // res.redirect('/');
-    res.render('../public/index.ejs', { 'message' : 'MarkURL was not found.'})
+    res.render('../public/index.ejs', { message : 'MarkURL was not found.'})
   });
 });
 
@@ -52,14 +54,14 @@ router.route('/').post((req, res) => {
 
   https://www.markruler.com/podo/film.do?releaseYear=all&productionCountry=%EB%8F%85%EC%9D%BC&genreId=3&saw=all&order=all
   newUrl.save()
-    .then(() => res.render('../public/index.ejs', { 'message' : 'MarkURL has been sent to your email.'}))
+    .then(() => res.render('../public/index.ejs', { message : 'MarkURL has been sent to your email.'}))
     .catch(err => {
       // console.log(err);
       if (err.code === 11000) {
         console.log(err.name);
         console.log(err.errmsg);
       }
-      res.render('../public/index.ejs', { 'message' : 'This URL cannot be converted.'});
+      res.render('../public/index.ejs', { message : 'This URL cannot be converted.'});
     });
   
   console.log('tinyURL : \n', newUrl.tiny)

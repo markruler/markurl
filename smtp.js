@@ -21,7 +21,7 @@ const mail = {
     const option = {
       from: 'markrulerofficial@gmail.com',
       to : req.to,
-      subject : 'MarkURL이 도착했습니다.',
+      subject : 'MarkURL is here.',
       text : req.text
     }
 

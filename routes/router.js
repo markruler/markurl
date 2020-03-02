@@ -3,7 +3,7 @@
 const router = require('express').Router();
 const url = require('./url');
 
-router.get('/', (req, res) => {
+// router.get('/', (req, res) => {
   // res.send('server is up and running');
 
   // const id = req.user;
@@ -13,10 +13,10 @@ router.get('/', (req, res) => {
   // }
 
   // res.render('../views/url.ejs', {'id':id})
-  console.log(process.env.SMTP_ID)
-  console.log(process.env.SMTP_PW)
-  res.render('../public/index.ejs', { message : '' })
-});
+  // console.log(process.env.SMTP_ID)
+  // console.log(process.env.SMTP_PW)
+//   res.render('../public/index.ejs', { message : '' })
+// });
 
 router.use('/url', url);
 
