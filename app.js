@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash')
 const cookieParser = require('cookie-parser');
 const favicon = require('serve-favicon');
-const logger = require('morgan');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');

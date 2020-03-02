@@ -13,6 +13,8 @@ router.get('/', (req, res) => {
   // }
 
   // res.render('../views/url.ejs', {'id':id})
+  console.log(process.env.SMTP_ID)
+  console.log(process.env.SMTP_PW)
   res.render('../public/index.ejs', { message : '' })
 });
 
