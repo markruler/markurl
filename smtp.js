@@ -26,7 +26,9 @@ const mail = {
     }
 
     transporter.sendMail(option, (err, res) => {
-      console.log('error : \n', err);
+      if (err) {
+        console.log('error : \n', err);
+      }
       // console.log(res);
     })
   }
