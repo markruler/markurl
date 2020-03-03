@@ -25,6 +25,7 @@ app.listen(port, () => {
 // static 폴더를 지정했기 때문에
 // bootstrap 을 node_modules로 다운로드 받아서 사용할 수 없음
 // CDN 으로 받자
+// http://expressjs.com/en/starter/static-files.html
 app.use('/url/static', express.static('public'))
 app.use(cors());
 // app.use(express.json());

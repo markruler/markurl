@@ -21,7 +21,7 @@ router.route('/:tiny').get((req, res) => {
   });
 });
 
-router.route('/').post((req, res) => {
+router.route('/mark').post((req, res) => {
   console.log('/url/:email+origin post');
   const email = req.body.email;
   const origin = req.body.origin;
