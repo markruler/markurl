@@ -5,21 +5,19 @@ let Url = require('../models/Url.model');
 
 router.route('/').get((req, res) => {res.render('../public/index.ejs', { message : ''})})
 
-router.route('/:email').get((req, res) => {
-  console.log(req.params.email);
-  
-})
-
 // http://expressjs.com/en/4x/api.html#req
 router.route('/:tiny').get((req, res) => {
-  console.log('/url/:tiny get');
+  // console.log('/url/:tiny get');
   console.log(req.params.tiny);
 
   // https://mongoosejs.com/docs/api.html#model_Model.findOne
   Url.findOne({
     tiny: req.params.tiny
   })
-  .then(data => res.redirect(data.origin))
+  .then(data => {
+    console.log(data.origin);
+    res.redirect(data.origin);
+  })
   .catch(error => {
     // res.redirect('/');
     res.render('../public/index.ejs', { message : 'MarkURL was not found.'})
@@ -58,23 +56,28 @@ router.route('/mark').post((req, res) => {
   ]
 
   Url.aggregate(pipeline)
-  .then(data => {
-    console.log(data[0].count);
-    
-    if (data[0].count > 2) {
-      res.render('../public/index.ejs', { message : 'Only 3 URLs per day.' });
-    } else {
+    .then(data => {
+      if (data.length && data[0].count > 2) {
+        return new Promise((resolve, reject) => {
+          reject('over');
+        })
+      }
+      return new Promise((resolve, reject) => {
+        resolve();
+      })
+    })
+    .then(() => {
       markSave(email, origin, res);
-    }
-  })
-  .catch(err => {
-    if (err) {
-      // console.log('error : \n', err);
-      res.redirect('/url');
-    }
-  })
-
-  
+    })
+    .catch(err => {
+      if (err === 'over') {
+        res.render('../public/index.ejs', { message : 'Only 3 URLs per day.' });
+      } else {
+        console.error('aggregate error : \n', err);
+        // res.redirect('/url');
+        res.render('../public/index.ejs', { message : 'Sorry. An unknown error has occurred.' });
+      }
+    });
 });
 
 function markSave(email, origin, res) {
