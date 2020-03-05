@@ -62,9 +62,10 @@ router.route('/mark').post((req, res) => {
           reject('over');
         })
       }
-      return new Promise((resolve, reject) => {
-        resolve();
-      })
+      // then 이 Promise 반환
+      // return new Promise((resolve, reject) => {
+      //   resolve();
+      // })
     })
     .then(() => {
       markSave(email, origin, res);
