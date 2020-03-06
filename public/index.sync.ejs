@@ -23,8 +23,12 @@
         <img src="/url/static/images/apple-icon-180x180.png" alt="markruler">
       </a>
     </div>
-    <form class="form-signin" id="userUrlForm">
-      <div class="alert alert-warning" role="alert" id="alertMessage"></div>
+    <form action="/url/mark" method="post" class="form-signin">
+      <% if (message !== '') { %>
+      <div class="alert alert-warning" role="alert">
+        <%= message %>
+      </div>
+      <% } %>
       <input type="email" name="email" class="form-control" placeholder="your email" required />
       <input type="url" name="origin" class="form-control" value="http://" placeholder="http://www.example.com" required />
       <!-- https://www.markruler.com/podo/film.do?releaseYear=all&productionCountry=%EB%8F%85%EC%9D%BC&genreId=3&saw=all&order=all -->
@@ -44,61 +48,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-
-  <script>
-    const alertMessage = document.getElementById("alertMessage");
-    const userUrlForm = document.getElementById("userUrlForm");
-    let timer;
-    
-    $(document).ready(() => {
-      alertMessage.classList.add("hide");
-
-      const formBuilder = (userUrl) => {
-        return {
-          email: userUrl.email.value,
-          origin: userUrl.origin.value
-        }
-      }
-
-      userUrlForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const formdata = document.getElementById("userUrlForm");
-
-        fetch("/url/mark", {
-          method: "post",
-          body: JSON.stringify(formBuilder(formdata)),
-          headers: {
-            "Content-Type": "application/json; charset=utf-8"
-          }
-        })
-        // You only can consume Response.json() once, if you are consuming it more than once, the error will happen.
-        // console.log(JSON.stringify(res.json()));
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data) {
-            alertMessage.innerText = data.message;
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          alertMessage.innerText = "Sorry. An unknown error has occurred.";
-        })
-        .finally(() => {
-          alertMessage.classList.remove("hide");
-          
-          // debouncing
-          if (timer) {
-            clearTimeout(timer);
-          }
-          timer = setTimeout(() => {
-            alertMessage.classList.add("hide");
-          }, 5000);
-        });
-      });
-
-    });
-  </script>
 </body>
 
 </html>

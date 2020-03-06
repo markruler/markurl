@@ -28,9 +28,14 @@ app.listen(port, () => {
 // http://expressjs.com/en/starter/static-files.html
 app.use('/url/static', express.static('public'))
 app.use(cors());
+
+// TODO: 기능별 AJAX 구현
 // app.use(express.json());
+// req.body
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+// https://stackoverflow.com/questions/29960764/what-does-extended-mean-in-express-4-0/45690436#45690436
+// app.use(bodyParser.urlencoded({ extended : true }))
+app.use(bodyParser.urlencoded({ extended : false }))
 app.set('view engine', 'ejs')
 
 app.use(session({
